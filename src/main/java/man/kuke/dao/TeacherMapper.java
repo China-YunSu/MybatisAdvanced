@@ -1,8 +1,6 @@
 package man.kuke.dao;
 
-import man.kuke.model.Student;
 import man.kuke.model.Teacher;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -12,6 +10,5 @@ import java.util.List;
  * @description:
  */
 public interface TeacherMapper {
-    @Select("select * from teacher")
-    List<Teacher> getTeachers();
+    List<Teacher> getTeachers(String id);
 }

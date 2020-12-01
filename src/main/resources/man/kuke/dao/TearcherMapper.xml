@@ -3,5 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="man.kuke.dao.TeacherMapper">
+<!--    assocation 多对一-->
+    <!-- 一对多 -->
+    <select id="getTeachers" resultMap="TeacherStudent" >
+        select t.name,t.id,s.name sname
+        from teacher t,student s
+        where t.id=#{id} and s.tid = t.id;
+    </select>
+
+<!-- collection 一对多-->
+<!--    JavaType 用来指定实体类中属性的类型 -->
+<!-- ofType 用来指定映射到List或集合中的泛型中的约束类型-->
+    <resultMap id="TeacherStudent" type="Teacher">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="student" ofType="Student">
+            <result property="name" column="sname"/>
+        </collection>
+    </resultMap>
 
 </mapper>

@@ -28,11 +28,52 @@ public class Demo {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Test
+    public void matchStudentandTeacher() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> students = mapper.getStudents();
+
+        for (Student student : students) {
+            System.out.println(student);
+        }
+        sqlSession.commit();
+        sqlSession.close();
+
+    }
+
+    @Test
+    public void matchStudentandTeacher2() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> students = mapper.getStudents2();
+        System.out.println(students.size());
+        for (Student student : students) {
+            System.out.println(student);
+        }
+        sqlSession.commit();
+        sqlSession.close();
+
+    }
+
+    @Test
+    public void matchTeacherandStudent() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        List<Teacher> teachers = mapper.getTeachers("100");
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher);
+        }
+        sqlSession.commit();
+        sqlSession.close();
+
+    }
     @Test
     public void testTeacher() {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
-        List<Teacher> teachers = mapper.getTeachers();
+        List<Teacher> teachers = mapper.getTeachers("100");
         for (Teacher teacher : teachers) {
             System.out.println(teacher);
         }
